@@ -12,10 +12,11 @@ body{
 
 
 /** globales **/
-    img{
-        max-width: 100%;
-    }
+img{
+   max-width: 100%;
+}
 .contenedor {
+    width: 95%;
     max-width: 120rem; /* 1200px */
     margin: 0 auto 0 auto;
 }
@@ -50,26 +51,34 @@ h4 {
 }
 /** Botones**/
 .boton{
+    
     color:white;
     font-weight: 700;
     text-decoration: none;
     font-size: 1.8rem;
     padding: 1rem 3rem; /*1 rem arriba y abajo, 3rem izq y derecha */
-    display: inline-block; /* inline: bloquea que el boton tome el ancho que quiera
+    /*display: inline-block;  /*inline: bloquea que el boton tome el ancho que quiera
     block:permite poder mover la posicion del boton (a 3 rem) */
-    margin-top: 3rem;
     text-align: center;
     border:none;
+    display: block;
+    flex: 0 0 88%;
+}
+@media (min-width: 768px) {
+    .boton{
+        display: block; /*para que tome bien los margins y padding*/
+        flex: 0 0 auto;
+    }
 }
 .boton:hover{
     cursor: pointer; /*es para forzar el cambio de cursor en boton*/
 }
 .boton-amarillo{
     background-color: #e08709;
-    display: block;
 }
 .boton-verde {
     background-color: #71b100;
+    display: inline-block;
 }
 
 /* Header */
@@ -90,6 +99,12 @@ h4 {
     flex-direction: column; /* row= de iz a derecha, row-reverse=de derecha a izq 
     colum= de arriba hacia abajo (solo los hijos del header -la barra y el h1-)*/
     justify-content: space-between; /* separa el logo y el texto "venta de casas.." arriba y abajo */
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .contenido-header{
+        text-align:left;
+    }
 }
 .contenido-header h1 {
     color: white;
@@ -98,78 +113,118 @@ h4 {
     line-height: 1.8; /*interlineado (en renglones) */
 }
 .barra{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding-top: 3rem; /* 30 px */
 }
 
+@media (min-width: 768px) {
+    .barra{
+        display: flex; /*alinea logo y navegacion*/
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 /* Navegacion */
 .navegacion a {
     color:white;
     text-decoration: none;
-    font-size: 1.8rem; /* 1.8rem = 18px */
-    margin-right: 2rem;
+    font-size: 2.5rem; 
+    display: block; /*para version movil */    
 }
-.navegacion a:last-of-type {
-    margin-right: 0rem;
+
+@media (min-width: 768px) {
+    .navegacion a {
+        display: inline-block; /*alinea los elementos del nav*/
+        font-size: 2.2rem;
+        margin-right: 2rem;
+    }
+    .navegacion a:last-of-type {
+        margin-right: 0rem;
+    }
 }
+
 .navegacion a:hover{
     color:#71b100;
 }
 /** Iconos Nosotros **/
-.iconos-nosotros {
-    display: flex; /* alinea los iconos "seguridad", "el mejor precio" y "a tiempo" */
-    justify-content: space-between;
-}
 .icono {
-    flex-basis: calc(33.3% - 1rem); /* cada icono ocupa el 33% de ancho menos 10px de espacio */
     text-align: center;
 }
 .icono h3{
-    text-transform: uppercase;
+    text-transform: uppercase; 
 }
+@media (min-width: 768px) {
+    .iconos-nosotros {
+        display: flex; /* alinea los iconos "seguridad", "el mejor precio" y "a tiempo" */
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 768px) {
+    .icono{
+        flex-basis: calc(33.3% - 1rem); /* cada icono ocupa el 33% de ancho menos 10px de espacio */
+    }
+}
+
 /** Anuncios **/
-.contenedor-anuncios {
-    display: flex;
-    justify-content: space-between; /*no anda separacion - video 39 */
-}
+
 .anuncio{
-    flex-shrink: 0; /*para que el anuncio no se achique si falta contenido*/
-    flex-basis: calc(33.% - 1rem);
-    border-style: solid;
-    border-color: white;  /* se puede abreviar como: border: (pixeles) (solid) (color) */
-    border-width: 1rem;
-    background: #f5f5f5;
+    text-align: center;
+    border: 1px solid #b5b5b5;
+    background-color: #f5f5f5;
+    margin-bottom: 2rem;
+    min-width: 20rem;
 }
+
+
+@media (min-width: 650px) {
+    .contenedor-anuncios {
+        display: flex;
+        justify-content: space-between; /* separacion - video 39 */
+        flex-wrap: wrap;
+    }
+    .anuncio{
+        text-align: left;
+        flex-shrink: 0; /*para que el anuncio no se achique si falta contenido*/
+        flex-wrap: 0; /*para que no se agrande*/
+        flex-basis: calc(33.3% - 1rem);
+        /*flex: 0 0 calc(33.3% - 1rem);*/
+    } 
+}
+
 .contenido-anuncio {
     padding: 2rem; /*centra el texto del anuncio */
 }
-.contenido-anuncio h3, .contenido-anuncio p  {
+.contenido-anuncio h3 {
     margin: 0;
 }
+
 .precio {
     color: #71b100;
     font-weight: 700;
 }
+
+
 .iconos-caracteristicas{
+    
+    
     list-style: none;
     padding: 0;
     display: flex; /* pone iconos horizontal */
     justify-content: space-between;
-    max-width: 40rem; /*para que no tomen el ancho de toda la pantalla en pestana anuncio*/
+    max-width: 35rem; /*para que no tomen el ancho de toda la pantalla en pestana anuncio*/
     flex: 1; /*para que crezcan y no queden pegados*/
 }
 .iconos-caracteristicas li {
     display: flex; /*pone los num horizontal (al lado de los iconos) */
+    justify-items: center;
 }
 .iconos-caracteristicas li img {
     margin-right: 2rem;
 }
+
 .ver-todas { /*para alinear el boton "ver todas" a la derecha */
     display: flex;
     justify-content: flex-end;
-    margin-right: 3rem;
 }
 /** Contacto Home**/
  .imagen-contacto {
@@ -181,43 +236,53 @@ h4 {
         align-items: center
  }
  .contenido-contacto {
-     flex: 1; /* factor de crecimiento (detecta cantidad de elementos y 
+     flex: 0 0 95%; /* factor de crecimiento (detecta cantidad de elementos y 
      los divide entre la cantidad de pixeles disponibles)*/
     color: #f5f5f5;
  }
- .contenido-contactacto p {
+ .contenido-contacto p {
      font-size: 1.8rem;
  }
  /** Seccion inferior */
- .seccion-inferior{
-     display: flex;
-     justify-content: space-between;
+ @media (min-width: 768px) {
+    .seccion-inferior{
+        display: flex;
+        justify-content: space-between;
+    }
+    .seccion-inferior .blog{
+       flex-basis: 60%;
+    }
+    .seccion-inferior .testimoniales {
+       flex-basis: calc(40% - 2rem);
+    }
  }
- .seccion-inferior .blog{
-    flex-basis: 60%;
- }
- .seccion-inferior .testimoniales {
-    flex-basis: calc(40% - 2rem);
- }
+ 
  .blog h3 {
      text-align: center;
      font-weight: 300;
  }
-
  .entrada-blog {
-     display: flex;
-     justify-content: space-between;
-     margin-bottom: 2rem; /* separacion vertical entre articulos */
+    margin-bottom: 2rem; /* separacion vertical entre articulos */
+}
+ @media (min-width: 768px) {
+    .entrada-blog {
+        display: flex;
+        justify-content: space-between;
+    }
  }
+ 
  .entrada-blog :last-of-type{
      margin-bottom: 0;
  }
- .entrada-blog .imagen {
-    flex-basis: 40%;
+ @media (min-width: 768px) {
+    .entrada-blog .imagen {
+        flex-basis: 40%;
+    }
+    .entrada-blog .texto-entrada {
+        flex-basis: calc(60% - 3rem);
+    }
  }
- .entrada-blog .texto-entrada {
-    flex-basis: calc(60% - 3rem);
- }
+
  .texto-entrada a{
     color: black;
     text-decoration: none;
@@ -271,35 +336,48 @@ h4 {
     background-color: #333333;
     margin:0;
 }
-.site-footer p {
+.site-footer p{
+    font-size: 1.1rem;
+    padding-top: 2rem;
     margin:0;
     color: white;
 }
+@media (min-width: 768px) {
+    .site-footer p{
+        font-size: 1.6rem;
+        padding-top: 0;
+    }
+}
 .contenedor-footer {
+    text-align: center;
     padding: 3rem 0;
-    display: flex;
-    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .contenedor-footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
 }
 /* PAGINAS INTERNAs*/
 /* Nosotros*/
-
-.contenido-nosotros {
-    display: grid; /*divide en columnas*/
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 2rem; /* Separacion entre columnas */
+@media (min-width: 768px) {
+    .contenido-nosotros {
+        display: grid; /*divide en columnas*/
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 2rem; /* Separacion entre columnas */
+    }
 }
+
 .texto-nosotros blockquote{
     font-weight: 700;
     font-size: 3rem;
     margin:0;
     padding: 0 0 3.5rem 0; /*solo padding abajo*/
 }
-/*Anuncios*/
-.contenedor-anuncios{
-    display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-    grid-column-gap: 2rem;
-}
+
 /*Anuncio*/
 .resumen-propiedad{
     display: flex;
